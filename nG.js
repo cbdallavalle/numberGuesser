@@ -1,16 +1,22 @@
+//Various global variables
+var ul = document.querySelector('ul');
+var hints = document.getElementById('hints');
+var lastGuessStr = document.querySelector('.last-guess-str');
 
 //Default min and max
 var min =  0;
 var max = 100;
 
+//Random Number used in rest of functions
+var randomNum = chooseRandom();
+
 //Default chooses random number
 function chooseRandom() {
   var chooseNum = Math.floor((Math.random() * max - min) + 1);
+  // TO CHEAT ENABLE ;) 
   console.log(chooseNum);
   return chooseNum
 }
-
-var randomNum = chooseRandom();
 
 //Reset the random number when a new minimum and maximum are given
 var inputForm = document.getElementById('input-form');
@@ -44,15 +50,17 @@ var clearButton = document.querySelector('.clear-button');
 clearButton.addEventListener('click', clear);
 
 function clear() {
-  // console.log('submit clear function working');
    input.value = '';
    ul.innerText = '0';
    disableClear();
  }
 
-//Disable clear button when nothing to clear
+//Disable clear and reset button when nothing to clear/reset
 var input = document.getElementById('enter-guess');
-input.addEventListener('keyup', disableClear);
+input.addEventListener('keyup', function() {
+    disableClear();
+    disableReset();
+  });
 
   function disableClear() {
     // console.log(input.value)
@@ -67,20 +75,6 @@ input.addEventListener('keyup', disableClear);
   }
 }
 
-
-//reset button will reload the page, effectively re-running the randomNumber function and returning display to 0
-var resetButton = document.querySelector('.reset-button');
-resetButton.addEventListener('click', reset);
-
-function reset() {
-  window.location.reload(true);
-  disableReset();
-  ul.innerText= "0";
-}
-
-//Disable reset button upon load
-input.addEventListener('keyup', disableReset);
-
   function disableReset() {
   if (input.value === '') {
     resetButton.disabled = true;
@@ -93,26 +87,34 @@ input.addEventListener('keyup', disableReset);
   }
 }
 
-//When Guess button is pressed, takes the input value and compares it to the chosen random number.
-var ul = document.querySelector('ul');
-var guessButton = document.querySelector('.guess-button');
+//reset button will reload the page, effectively re-running the randomNumber function and returning display to 0
+var resetButton = document.querySelector('.reset-button');
+resetButton.addEventListener('click', reset);
 
-var hints = document.getElementById('hints');
-var lastGuessStr = document.querySelector('.last-guess-str');
+function reset() {
+  window.location.reload(true);
+  disableReset();
+  ul.innerText= "0";
+}
+
+//When Guess button is pressed, takes the input value and compares it to the chosen random number.
+var guessButton = document.querySelector('.guess-button');
 
 guessButton.addEventListener('click', function(e){ 
   e.preventDefault();
-  console.log("I am checking to see if enter button is working", e);
+  // console.log("I am checking to see if enter button is working", e);
   submit();
+  randomizeAnimals();
+  createAnimals();
 });
 
  function submit() {
-   console.log('submit function running');
+   // console.log('submit function running');
    var numString = input.value;
    ul.innerText = numString;
    
     var userNum = parseInt(numString);
-    console.log(userNum);
+    // console.log(userNum);
 
     //Checks to see if user number is between min and max, and whether it is NaN
     if (isNaN(parseInt(numString))) {
@@ -154,6 +156,7 @@ guessButton.addEventListener('click', function(e){
     }
   }
 
+//sets the pink display of the user number to 0
 function display0() {
   var ulDisplay = ul.innerText;
   var ulDisplay0 = 0;
@@ -165,165 +168,88 @@ function uponSuccess () {
   randomNum = chooseRandom();
   displayMin.innerText = min;
   displayMax.innerText = max;
-  lastGuessStr.innerText = 'Try again! It\' harder this time, though...';
+  lastGuessStr.innerText = 'Try again! It\'s harder this time, though...';
   setTimeout(function() 
     { ul.innerText = 0;
       hints.innerText = '';
     }, 1500);
     }
 
-//incrementing min and max upon successful guess
-//write a function, that recognizes when hints = Boom!
-//calls min and max and increments their values by ten
-//calls chooseRandom to pick a new random number in between new min and max
-//displays new min and max in top paragraph
 
 
-// // testing enter own min and max
-// var enterButton = document.querySelector('.enter-min-max');
-// enterButton.addEventListener('click', enter);
+var barnArray = [
+    "https://openclipart.org/download/48547/krowa.svg", 
+    "https://openclipart.org/download/210154/inhabitants-npc-piggy.svg",
+    "https://openclipart.org/download/284215/publicdomainq-0000586ukgunb.svg",
+    "https://openclipart.org/download/247819/goat_white.svg",
+    "https://openclipart.org/download/274644/Pastel-Unicorn.svg",
+    "https://openclipart.org/download/45673/PUP2.svg"
+]
+// var cow = document.querySelector('.cow');
+// cow.style.visibility = 'hidden'
+// var pig = document.querySelector('.pig);');
 
-// function enter() {
-//   var enterMin = document.getElementById('enter-min').value;
-//   var enterMax = document.getElementById('enter-max').value;
-//   var min = enterMin;
-//   var max = enterMax;
-//   console.log(min);
-//   console.log(max);
-// }
+var section = document.querySelector('section');
+section.style.visibility = "hidden";
+
+var container = document.getElementById('barnyard');
+container.setAttribute('class', 'barnyard')
+
+var animalButton = document.querySelector('.animal-button');
+
+var animalRandomNum = 0;
+
+function animalCountRight() {
+  
+  animalNum = parseInt(animalInput.value);
+  if (animalNum == animalRandomNum) {
+    console.log('hi!')
+    section.style.visibility = "hidden";
+    guessButton.disabled = false;
+  }
+}
 
 
-// //Chooses random number
-// function chooseRandom() {
-//   var chooseNum = Math.floor((Math.random() * 100) + 1);
-//   return chooseNum
-// }
-
-// var randomNum = chooseRandom();
-
-// //various variables defined
-// var ul = document.querySelector('ul');
-// var guessButton = document.querySelector('.guess-button');
-// guessButton.addEventListener('click', submit);
-// var min = 0;
-// var max = 100;
+var animalInput = document.querySelector('#enter-animal-number');
+var cownter = document.querySelector('.animal-button');
+cownter.addEventListener('click', function(){
+  animalCountRight();
+  removeAnimals();
+});
 
 
-//  function submit() {
-//    console.log('submit function running');
-//    var numString = document.getElementById('enter-guess').value;
-//    ul.innerText = numString;
+
+//function to delete all images in container, remove attributes
+// function removeAnimals(){
+//   var newAnimalImgs = document.querySelectorAll('img');
+//   var animalArr = []
+//   // var l = newAnimalImgs; //newAnimalImgs.length
+  
+  
+//   for (var i = 0; i < 6; i++) {
+//     animalArr.pop(newAnimalImgs);
+//     console.log(animalArr);
+//     newAnimalImgs[0].parentNode.removeChild[0];
    
-//     var userNum = parseInt(numString);
-//     console.log(userNum);
-
-//     //Checks to see if user number is between min and max, and whether it is NaN
-//     if (isNaN(parseInt(numString))) {
-//         alert('Don\'t mess with me')
-//         ul.innerText = '0';
-//         return;
-//       }
-
-//     else if (userNum > max) {
-//       alert('Your number is too big');
-//       ul.innerText = '0';
-//       return;
-//     }
-//     else if (userNum < min) {
-//       alert('Your number is too small')
-//       ul.innerText = '0';
-//       return;
-//     }
-
-//     //If number is between min and max, displays hints
-//     else {
-//       var hints = document.getElementById('hints');
-      
-//       if (userNum === randomNum) {
-//         hints.innerText = 'BOOM!';
-//          }
-//       else if (userNum > randomNum) {
-//         hints.innerText = 'That is too high';
-//           }
-//       else {
-//         hints.innerText = 'That is too low';
-//       }
-//     }
 //   }
-
-// //clear button will clear input and return display to 0
-// var clearButton = document.querySelector('.clear-button');
-// clearButton.addEventListener('click', clear);
-
-// function clear() {
-//   console.log('submit clear function working');
-//    document.getElementById('enter-guess').value = 'Enter your guess';
-//    ul.innerText = '0';
-//  }
-
-//testing
-// var resetButton = document.querySelector('.reset-button');
-// resetButton.addEventListener('click', reset);
-
-// function reset() {
-//   'nG.html'.reload(true);
+//   // document.querySelector('.animals').className = "oldAnimals";
+// };
 
 
+function createAnimals() {    
+  section.style.visibility = "visible";
+  
+  for (var i = 0, j = animalRandomNum; i < j; i++) {
+      var animalImg = document.createElement('img');
+      animalImg.setAttribute('class', 'animals');
+      animalImg.src = barnArray[i]; // img[i] refers to the current URL.
+      container.appendChild(animalImg);
+  guessButton.disabled = true;
+  }
+};
 
-
-
-
-//testing
-// var resetButton = document.querySelector('.reset-button');
-// resetButton.addEventListener('click', reset);
-
-// function reset() {
-//   "nG.html".reload(true);
-
-// var clearButton = document.querySelector('.clear-button');
-// clearButton.addEventListener('click', clear);
-
-// function clear() {
-//   console.log('submit clear function working');
-//    ul.innerText = "Enter your guess";
-
-
-
-// var userString = document.getElementById("enter-guess").textContent;
-// //Do I need a function here?
-// var userNum = parseInt(userString);
-// userString.textcontent = userNum
-
-
-
-// //Choosing a random number and comparing it to the user number//
-// function chooseRandom() {
-//   var chooseNum = Math.floor((Math.random() * 100) + 1);
-//   return chooseNum
-// }
-
-// var randomNum = chooseRandom();
-
-// //?how to get these to display in <p> class="hints"//
-// function numComparison() {
-//   if (userNum === randomNum) {
-//     return "BOOM!"
-//   }
-//   else if (userNum > randomNum) {
-//     return "That is too high"
-//   }
-//   else 
-//     return "That is too low"
-// }
-
-// //When the guess button is clicked, will display the number in big pink text//
-// var ul = document.querySelector('ul');
-// var guessButton = document.querySelector('.guess-button');
-// guessButton.addEventListener('click', submit);
-
-
-//  function submit() {
-//    var numGuess = document.getElementById('enter-guess').value;
-//    ul.innerText = numGuess;
-//    }
-
+  function randomizeAnimals() {
+    var animalRan = Math.floor((Math.random() * 6) + 1);
+    animalRandomNum = animalRan;
+    // console.log(animalRan);
+  }

@@ -1,41 +1,44 @@
 body {
+  border: 0px;
+  box-sizing: border-box;
+  font-family: Open Sans;
   margin: 0px;
   padding: 0px;
-  font-family: Open Sans;
+  position: relative;
   text-align: center;
   vertical-align: top;
 }
 
 header {
-  width: 100%;
   background-color: #404041;
-  height: 45%;
   display: block;
-  margin-top: -2%;
+  height: 100px;
   margin-bottom: 2%;
+  margin-top: -2%;
+  width: 100%;  
 }
 
 h1 {
   color: #E6E7E8;
   font-weight: 300;
   font-size: 250%;
-  margin-bottom: 0px;
-  padding: 1%;
+  margin: 0px;
+  padding: 3%;
 }
 
 strong {
-  font-weight: 700;
   color: #ED458B;
+  font-weight: 700; 
 }
 
 button {
   background-color: #929497;
-  color: #FFFFFF;
   border-top-left-radius: 40px 40px;
-  border-bottom-left-radius: 40px 40px;
   border-top-right-radius: 40px 40px;
+  border-bottom-left-radius: 40px 40px;
   border-bottom-right-radius:40px 40px;
   border: white;
+  color: #FFFFFF;
 }
 
 .input-button:disabled {
@@ -48,25 +51,25 @@ button:hover {
   color: #FFFFFF;
 }
 
-input::placeholder {
+input:placeholder {
   color: #E6E7E8;
 }
 
-.input-button {
-  width: 14%;
-  height: 30px;
+.input-button { 
   font-size: 17px;
   font-weight: 300;
+  height: 30px;
   margin: 8px;
+  width: 14%;
 }
 
 #enter-guess {
-  width: 30%;
-  height: 15%;
+  color: #E6E7E8;
   font-size: 120%;
   font-weight: 300;
+  height: 15%;
   padding: .3%;
-  color: #E6E7E8;
+  width: 30%;
 }
 
 p {
@@ -77,18 +80,69 @@ p {
 #value-p {
   color: #EB008B;
   font-size: 800%;
-  margin: -2%;
   font-weight: lighter;
+  margin: -2%;
 }
 
 .reset-button {
-  width: 30%;
   font-size: 80%;
   font-weight: lighter;
   padding: .6%;
+  width: 30%;
 }
 
 ul {
-  width:97%;
   margin: auto;
+  width:97%;
+}
+
+.animal-button {
+  font-size: 120%;
+  font-weight: 300;
+  height: 15%;
+  margin-top: 5px;
+  padding: .3%;
+  width: 30%;
+}
+
+section {
+  display: block;
+  height: 70%;
+  margin-top: -530px;
+  margin-left: 10px;
+  position: absolute;
+  width: 30%;
+  z-index: 100;
+}
+
+.animal-p {
+  margin-left: 0%;
+  margin-top: 0px;
+}
+
+.animals {
+  height: 50px;
+  width: auto;
+}
+
+#barnyard {
+  border: 2px solid black;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+.animal-form {
+  display: block;
+  text-align: center;
+  }
+
+#enter-animal-number{
+  color: #E6E7E8;
+  font-size: 120%;
+  font-weight: 300;
+  height: 25%;  
+  padding: .3%;  
+  width: 30%;
+
 }

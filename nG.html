@@ -5,126 +5,65 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
   </head>
 
-<body>
+  <body>
 
-  <header>
-    <h1><strong>Number</strong> Guesser</h1>
-  </header>
+    <header>
+      <h1><strong>Number</strong> Guesser</h1>
+    </header>
 
-  <main>
+    <main>
     
-    <p>Guess the number between <strong class="min-value">0</strong> and <strong class="max-value">100</strong></p>
+      <p>Guess the number between <strong class="min-value">0</strong> and <strong class="max-value">100</strong></p>
 
-    <form id='input-form'>
-      <label for="enter-guess"></label>
-      <input id="enter-guess" placeholder="Enter your guess" type="text">
+      <form id='input-form'>
+        <label for="enter-guess"></label>
+        <input id="enter-guess" placeholder="Enter your guess" type="text">
       
-      <p>
-        <button class="input-button guess-button" type="submit">Guess</button>
+        <p>
+          <button class="input-button guess-button" type="submit">Guess</button>
+        
+          <button disabled class="input-button clear-button" type="button">Clear</button>
+        </p>
+
+        <p class="last-guess-str">Your last guess was</p>
+        <ul id="value-p">0</ul>
+        <p id="hints">That is too high</p>
+        <button disabled class="input-button reset-button" type="button">Reset</button>
+    
+      </form>
+
+
+      <p>Too easy? Choose your own range!</p>
+       
+      <form class="customize">
+
+        <label for="enter-min"></label>
+        <input id="enter-min" placeholder="Enter a minimum" type="text">
+        <label for="enter-max"></label>
+        <input id="enter-max" placeholder="Enter a maximum" type="text">
+        <button class="enter-min-max" type="button">Enter</button>
+    
+      </form>
+    
+    </main>
+
+    <section>
+      <p class="animal-p">Enter the number of animals to guess again!</p>
+
+      <div id="barnyard">
+      </div>
       
-        <button disabled class="input-button clear-button" type="button">Clear</button>
-      </p>
+      <form class="animal-form">
+        <label for="enter-animal-number"></label>
+        <input id="enter-animal-number" placeholder="Animal count" type="text">
+        <button type="button" class="animal-button">Cow-nter</button>
+      </form>
+    </section>
 
-      <p class="last-guess-str">Your last guess was</p>
-      <ul id="value-p">0</ul>
-      <p id="hints">That is too high</p>
-      <button disabled class="input-button reset-button" type="button">Reset</button>
-    
-    </form>
+  </body>
 
-    <form>
-    
-    <p>Too easy? Choose your own range!</p>
-    <label for="enter-min"></label>
-    <input id="enter-min" placeholder="Enter a minimum" type="text">
-    <label for="enter-max"></label>
-    <input id="enter-max" placeholder="Enter a maximum" type="text">
-    <button class="enter-min-max" type="button">Enter</button>
-  
-  </form>
-  
-  </main>
+  <script type="text/javascript" src="nG.js"> 
+  </script>
 
-</body>
-
-<script type="text/javascript" src="nG.js"> 
-</script>
 
 </html>
-
-
-<!-- //Chooses random number
-function chooseRandom() {
-//   var chooseNum = Math.floor((Math.random() * 100) + 1);
-//   return chooseNum
-// }
-
-// var randomNum = chooseRandom();
-
-// //various variables defined
-// var ul = document.querySelector('ul');
-// var guessButton = document.querySelector('.guess-button');
-// guessButton.addEventListener('click', submit);
-// var min = 0;
-// var max = 100;
-
-
-//  function submit() {
-//    console.log('submit function running');
-//    var numString = document.getElementById('enter-guess').value;
-//    ul.innerText = numString;
-   
-//     var userNum = parseInt(numString);
-//     console.log(userNum);
-
-//     //Checks to see if user number is between min and max, and whether it is NaN
-//     if (isNaN(parseInt(numString))) {
-//         alert('Don\'t mess with me')
-//         ul.innerText = '0';
-//         return;
-//       }
-
-//     else if (userNum > max) {
-//       alert('Your number is too big');
-//       ul.innerText = '0';
-//       return;
-//     }
-//     else if (userNum < min) {
-//       alert('Your number is too small')
-//       ul.innerText = '0';
-//       return;
-//     }
-
-//     //If number is between min and max, displays hints
-//     else {
-//       var hints = document.getElementById('hints');
-      
-//       if (userNum === randomNum) {
-//         hints.innerText = 'BOOM!';
-//          }
-//       else if (userNum > randomNum) {
-//         hints.innerText = 'That is too high';
-//           }
-//       else {
-//         hints.innerText = 'That is too low';
-//       }
-//     }
-//   }
-
-// //clear button will clear input and return display to 0
-// var clearButton = document.querySelector('.clear-button');
-// clearButton.addEventListener('click', clear);
-
-// function clear() {
-//   console.log('submit clear function working');
-//    document.getElementById('enter-guess').value = '';
-//    ul.innerText = '0';
-//  }
-
-// //testing reset button
-// var resetButton = document.querySelector('.reset-button');
-// resetButton.addEventListener('click', reset);
-
-// function reset() {
-//   window.location.reload(true);
-// } -->
